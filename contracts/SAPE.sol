@@ -53,6 +53,7 @@ contract SAPE is ERC20 {
     function sell(uint256 amount) external {
         require(balanceOf(msg.sender) >= amount, "Insufficient balance");
         _transfer(msg.sender, address(0), amount);
+
         payable(msg.sender).transfer(
             amount.mul(SafeMath.sub(100, SELL_FEE_PERCENT)).div(100)
         );
